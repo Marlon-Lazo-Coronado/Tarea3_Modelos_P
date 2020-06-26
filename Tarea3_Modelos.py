@@ -153,7 +153,7 @@ def main():
     print('Los dos modelos son Gausianos por lo que se presenta el miu y el sigma para X e Y.\n')
     print('Estos parametros se calcularon utilizando los datos, no el modelo,')
     print('esto mediante las formulas de la variable decreta, junto a los graficos se')
-    print('dejaran imagenes que contienen las formulas que se han utilizado.')
+    print('dejaran imagenes que contienen las formulas que se han utilizado.\n')
     
     print('Para la variable X')
     print('La media miu de X es: ', t6) #Media=9.9354
@@ -173,7 +173,7 @@ def main():
     print('\n#########################################################')
     print('Con respecto a los momentos de la Variable aleatoria conjunta\n')
     print('Los momentos han sido calculados con base en los datos del csv y sin utilizar')
-    print('el modelo, para esto se utilizaron las ecuaciones de la presentacion 10.\n')
+    print('el modelo, para esto se utilizaron las ecuaciones de la presentacion 10, pero tratadas como variable discreta.\n')
     
     
     Datos2=pd.read_csv('xyp.csv', header=0)
@@ -187,35 +187,36 @@ def main():
     
     #Calculamos la corelacion
     corelacion=0
-    for col in range(233):
-             corelacion+=Matrixyp.iat[row,0]*Matrixyp.iat[row,1]*Matrixyp.iat[row,2]
+    for col in range(231):
+             corelacion+=Matrixyp.iat[col,0]*Matrixyp.iat[col,1]*Matrixyp.iat[col,2]
     print('La correlación Rxy es: ', corelacion)
     
     print('Sepuede decir que ambas variables no estan corelacionadas ya son independientes')
-    print('sin embargo la correlacion es de 21.32 muy distante a E[X]*E[Y]=149.55 que es la expresion')
+    print('en este caso la correlacion es de 149.542 muy cercano a E[X]*E[Y]=149.55 que es la expresion')
     print('para cuando la variables no estan correlacionadas. Sin embargo a como se explica en la')
-    print('presentacion esto no es nesesariamente cierto para variables aleatorias gaussianas.\n')
-    
+    print('presentacion esto no es nesesariamente cierto para variables aleatorias gaussianas,')
+    print('Aunque por dicha si se cumplio en este caso, ayudandonos a comprobar la exactitud de los datos\n')
     
     
     #Calculamos la covarianza
     covarianza=0
-    for col in range(233):
-             covarianza+=(Matrixyp.iat[row,0]-9.9354)*(Matrixyp.iat[row,1]-15.04566)*Matrixyp.iat[row,2]
+    for col in range(231):
+             covarianza+=(Matrixyp.iat[col,0]-9.9354)*(Matrixyp.iat[col,1]-15.04566)*Matrixyp.iat[col,2]
     print('La covarianza Cxy es: ', covarianza)
     
     print('La covarianza tiene mucho sentido ya que X y Y son variables aleatorias')
     print('independientes por lo que la covarianza de la funcion bidimencional es cero')
     print('esto se expresa como Cxy=0. Si las variables son ondendientes la covarianza')
-    print('es cero, en nuestro caso Cxy=0.06405.\n')
+    print('es cero, en nuestro caso Cxy= 0.0677.\n')
     
     
-    print('El coeficiente de correlacion p es: ', 0.06405/(5.3*2.8))
+    print('El coeficiente de correlacion p es: ', 0.06773/(5.3*2.8))
     print('Para el coeficiente de correlacion basta con aplicar la formula que se')
     print('indica en la presentacion 10 diapositiva 19, en donde se tiene la formula')
     print('p=Cxv/[(Desviacion.E X)*(Desviacion.E Y)], por lo tanto solo utilizamos') 
-    print('estos paramatros calculado anteriormente.\n')
-    
+    print('estos paramatros calculado anteriormente. Nuevamente este parametro nos indica el grado')
+    print('de independencia entre las variables X, Y dando como resultado un valor muy bajo p=0.00456')
+    print('Confirmando la supocicion inicial, este parametro es independiente de la escala de medida de las variables')
     
     
     
@@ -254,17 +255,17 @@ def main():
     plt.show()
     
     
-   # GRAFICAMOS f(X,Y)
-    x = np.linspace(0,15, 100)
-    y = np.linspace(0,25, 100)
+   # GRAFICAMOS f(x,y)=f(x)f(y) por ser X, Y independientes.
+    x = np.linspace(0,15, 50)
+    y = np.linspace(0,25, 50)
     x,y = np.meshgrid(x,y)
     z = 0.0105*np.exp(-((((x-9.9354)**2)/15.7)+(((y-15.04)**2)/59.06)))
     fig = plt.figure(figsize=(7,7))
     ax=fig.add_subplot(1,1,1, projection='3d')
-    ax.plot_wireframe(x,y,z, rstride=2, cstride=2, cmap='Blues')
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_zlabel('f(X,Y)')
+    ax.plot_wireframe(x,y,z, rstride=1, cstride=1, cmap='Blues')
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    ax.set_zlabel('f(x,y)')
     ax.set_title('Funcion de Distribucion Conjunta')
     plt.show()
 
