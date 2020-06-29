@@ -11,7 +11,7 @@ Luego para calcular los parametros miu y sigma, se utilizaron formulas generales
 
 
 Punto 2.
-Este punto es muy sensillo, como en el punto anterior se calculo un mui y un sigma para X y Y, practicamente ya se cuenta con las funciones de distribucion de estas dos variables. Revisando la presentacion 10 nos damos cuenta que la funcion de distribucion conjunta f(x,y) es la multiplicacion de las funciones marginales en caso de haber independencia entre estas, que es lo que se indica en el enunciado. Por lo tanto la funcion de distribucion conjunta es una exponencial que depende de x e y.
+Este punto es muy sensillo, como en el punto anterior se calculo un mui y un sigma para X y Y, practicamente ya se cuenta con las funciones de distribucion de estas dos variables. Revisando la presentacion 10 nos damos cuenta que la funcion de distribucion conjunta f(x,y) es la multiplicacion de las funciones marginales en caso de haber independencia entre estas, que es lo que se indica en el enunciado. Por lo tanto la funcion de distribucion conjunta es una exponencial que depende de x e y. En este repositorio hay un archivo llamado Punto_2.pdf en donde se desarrolla el punto 2.
 
 
 Punto 3.
